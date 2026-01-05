@@ -1,0 +1,12 @@
+spring.application.name=agent-ia-service
+server.port=portNumber
+
+spring.ai.ollama.chat.options.model=llamaVersion
+
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+spring.ai.mcp.client.enabled=true
+spring.ai.mcp.client.streamable-http.connections.servicemetier1.url=http://localhost:PortServiceMetier1
+spring.ai.mcp.client.streamable-http.connections.servicemetier2.url=http://localhost:PortServiceMetier2
+
+spring.ai.mcp.client.type=SYNC
+logging.level.org.springframework.ai.mcp=DEBUG

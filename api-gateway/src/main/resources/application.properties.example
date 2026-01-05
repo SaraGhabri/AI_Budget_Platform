@@ -1,0 +1,14 @@
+spring.application.name=api-gateway
+
+
+server.port=portNumber
+
+jwt.secret=yourSecretKey
+
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+
+logging.level.com.budget.gateway=DEBUG
+logging.level.org.springframework.cloud.gateway=DEBUG
+
+spring.cloud.gateway.discovery.locator.enabled=true
+
