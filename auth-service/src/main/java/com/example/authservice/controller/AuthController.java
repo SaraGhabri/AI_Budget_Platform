@@ -29,9 +29,12 @@ public class AuthController {
     private final JwtService jwtService;
     private final AppUserRepository appUserRepository;
 
+
+    //login endpoint - genere token jwt
     @PostMapping("/api/auth/login")
     public LoginResponse login(@RequestBody AuthenticationRequest authenticationRequest) {
         try {
+            //auth credentials via spring sec
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             authenticationRequest.getUsername(),
@@ -41,22 +44,23 @@ public class AuthController {
             throw new RuntimeException("Invalid username or password");
         }
 
+        //load user details de la base
         final UserDetails user = userDetailsService.loadUserByUsername(
                 authenticationRequest.getUsername()
         );
 
-        // Récupérer l'utilisateur complet depuis la base
+        // récupérer entite user complete
         AppUser appUser = appUserRepository.findByUsername(authenticationRequest.getUsername());
 
-        // Générer le token avec username comme subject
+        // genere le token avec username comme subject
         String token = jwtService.generateToken(user);
 
-        // Construire la réponse
+        // construire la réponse
         UserDto userDto = UserDto.builder()
-                .id(String.valueOf(appUser.getId()))  // Convert Integer to String
+                .id(String.valueOf(appUser.getId()))  // convert Integer to String
                 .username(appUser.getUsername())
                 .email(appUser.getMail())
-                .role(appUser.getRole().name())  // Single role, not list
+                .role(appUser.getRole().name())  // single role, not list
                 .build();
 
         return LoginResponse.builder()
@@ -66,15 +70,17 @@ public class AuthController {
     }
 
 
-    // Ajouter un endpoint pour valider le token (utile pour Gateway)
+    // ajouter un endpoint pour valider le token (utile pour Gateway)
     @GetMapping("/api/auth/validate")
     public ResponseEntity<?> validateToken(@RequestHeader(value = "Authorization", required = false) String authHeader) {
         System.out.println("=== VALIDATE TOKEN CALLED ===");
 
+        //verif si auth header existe
         if (authHeader == null || authHeader.trim().isEmpty()) {
             return ResponseEntity.ok(Map.of("valid", false, "message", "No Authorization header"));
         }
 
+        //verif bearer format
         if (!authHeader.startsWith("Bearer ")) {
             return ResponseEntity.ok(Map.of("valid", false, "message", "Invalid Authorization format"));
         }
@@ -82,12 +88,17 @@ public class AuthController {
         String token = authHeader.substring(7).trim();
 
         try {
+            //extract username du token
             String username = jwtService.getUsernameFromToken(token);
             System.out.println("Username extracted: " + username);
 
+
+            //valider token signature et expiration
             if (username != null && jwtService.validateToken(token,
                     userDetailsService.loadUserByUsername(username))) {
 
+
+                //retourne info user si valide
                 AppUser appUser = appUserRepository.findByUsername(username);
                 return ResponseEntity.ok(Map.of(
                         "valid", true,

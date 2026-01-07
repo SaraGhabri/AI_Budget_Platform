@@ -28,10 +28,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                // DISABLE CSRF COMPLETELY
+                // csrf disabled = using jwt not session cookies
                 .csrf(csrf -> csrf.disable())
 
-                // Configure CORS if needed
+                // Configure CORS en cas de besoin
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
 
                 .authorizeHttpRequests(auth -> auth
@@ -51,8 +51,11 @@ public class SecurityConfig {
                         // All other requests need authentication
                         .anyRequest().authenticated()
                 )
+                //stateless sessions (no server-side session storage)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                //custom auth provider
                 .authenticationProvider(authenticationProvider)
+                //ajput filtre specifique avant le filtre par defaut = jwt valide avant spring security
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

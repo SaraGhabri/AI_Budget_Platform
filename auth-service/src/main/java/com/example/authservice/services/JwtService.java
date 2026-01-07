@@ -22,29 +22,33 @@ public class JwtService {
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
+        // add roles to JWT claims (custom claim)
         claims.put("roles", userDetails.getAuthorities().stream()
                 .map(a -> a.getAuthority())
                 .collect(Collectors.toList()));
+        // add username to claims
         claims.put("sub", userDetails.getUsername());  // Standard JWT claim
 
+        //build jwt
         return Jwts.builder()
-                .setClaims(claims)
-                .setSubject(userDetails.getUsername())
-                .setIssuedAt(new Date())
+                .setClaims(claims) //custom claim
+                .setSubject(userDetails.getUsername()) //jwt subject claim
+                .setIssuedAt(new Date()) //tken creation time
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
-                .signWith(getKey())
-                .compact();
+                .signWith(getKey()) //HMAC-SHA256 signature
+                .compact(); //serialize to string
     }
 
     // returns payload
 
 
+    //extract claims from token
     private Claims getClaimsFromToken(String token) {
         return Jwts.parserBuilder()
-                .setSigningKey(getKey())
+                .setSigningKey(getKey()) //verify  sig with same key
                 .build()
-                .parseClaimsJws(token)
-                .getBody();
+                .parseClaimsJws(token)//parse and validate it
+                .getBody(); //returns payload
     }
     //extraction of username and expiration
 
@@ -55,9 +59,10 @@ public class JwtService {
     public Date getExpirationDateFromToken(String token) {
         return getClaimsFromToken(token).getExpiration();
     }
-    //verification
 
+    //verification
     public Boolean validateToken(String token, UserDetails userDetails) {
+        //check si username in token matches expected user + si il nest pas expire
         return getUsernameFromToken(token).equals(userDetails.getUsername())
                 && getExpirationDateFromToken(token).after(new Date());
     }

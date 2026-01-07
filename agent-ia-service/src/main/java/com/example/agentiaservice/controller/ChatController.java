@@ -18,6 +18,7 @@ public class ChatController {
         this.chatClient= builder
                 // adding memory to the chat
                 //the tools you can use
+                // fournit MCP tools pour appeler budget et expense services
                 .defaultToolCallbacks(callbackProvider)
                 //.defaultTools(productTools)
                 //specifier un prompt pour toute lapp = prompt generique
@@ -26,6 +27,7 @@ public class ChatController {
                         - utilise seulment les outils pour repondre 
                         - si la question ne concerne pas les budgets et les expenses, réponds exactement :'je ne sais pas ' ne donne jamis d'informations inventes
                         """)
+                //ajout de conversation memory
                 .defaultAdvisors(MessageChatMemoryAdvisor.builder(memory).build())
                 .build();
     }
@@ -37,7 +39,7 @@ public class ChatController {
                 .prompt()
                 .user(message)
                 //.call()
-                .stream()
+                .stream() // stream des reponses real time
                 .content();
     }
 }

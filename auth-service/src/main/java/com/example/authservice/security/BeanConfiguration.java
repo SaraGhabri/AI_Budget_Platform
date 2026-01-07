@@ -31,6 +31,7 @@ public class BeanConfiguration {
 
     private final AppUserRepository appUserRepository;  // Inject repository instance
 
+    //load user from db
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> {
@@ -40,6 +41,7 @@ public class BeanConfiguration {
                 throw new UsernameNotFoundException("User not found: " + username);
             }
 
+            //conversion to spring sec userDetails
             return User.builder()
                     .username(appUser.getUsername())
                     .password(appUser.getPassword())
@@ -48,6 +50,7 @@ public class BeanConfiguration {
         };
     }
 
+    //configuration de lauthenticaion
     @Bean
     public AuthenticationProvider authenticationProvider(
             UserDetailsService userDetailsService,
@@ -58,6 +61,7 @@ public class BeanConfiguration {
         return provider;
     }
 
+    //gerer le process de lauth
     @Bean
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration authenticationConfiguration) throws Exception {

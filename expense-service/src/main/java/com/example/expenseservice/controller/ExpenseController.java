@@ -1,4 +1,4 @@
-package com.example.expenseservice.controller;
+/*package com.example.expenseservice.controller;
 
 import com.example.expenseservice.entity.Expense;
 import com.example.expenseservice.service.ExpenseService;
@@ -66,5 +66,58 @@ public class ExpenseController {
         }
         String[] roles = userRoles.split(",");
         return roles[0].trim();
+    }
+}*/
+
+package com.example.expenseservice.controller;
+
+import com.example.expenseservice.entity.Expense;
+import com.example.expenseservice.service.ExpenseService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/expenses")
+@RequiredArgsConstructor
+public class ExpenseController {
+
+    private final ExpenseService expenseService;
+
+    // ✅ GET ALL EXPENSES
+    @GetMapping
+    public ResponseEntity<List<Expense>> getAllExpenses() {
+        return ResponseEntity.ok(expenseService.getAllExpenses());
+    }
+
+    // ✅ GET EXPENSE BY ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Expense> getExpenseById(@PathVariable Long id) {
+        Expense expense = expenseService.getExpenseById(id);
+        return expense != null ?
+                ResponseEntity.ok(expense) :
+                ResponseEntity.notFound().build();
+    }
+
+    // ✅ GET EXPENSES BY CATEGORY
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<Expense>> getExpensesByCategory(@PathVariable String category) {
+        List<Expense> expenses = expenseService.getExpensesByCategory(category);
+        return ResponseEntity.ok(expenses);
+    }
+
+    // ✅ CREATE EXPENSE
+    @PostMapping
+    public ResponseEntity<Expense> createExpense(@RequestBody Expense expense) {
+        return ResponseEntity.ok(expenseService.createExpense(expense));
+    }
+
+    // ✅ DELETE EXPENSE
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteExpense(@PathVariable Long id) {
+        expenseService.deleteExpense(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -12,13 +12,13 @@ public class SecurityConfig {
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         return http
-                .csrf(ServerHttpSecurity.CsrfSpec::disable)
-                .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
-                .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
+                .csrf(ServerHttpSecurity.CsrfSpec::disable) //csrf disabled using jwt
+                .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable) //no basic auth
+                .formLogin(ServerHttpSecurity.FormLoginSpec::disable) //no form login
                 .authorizeExchange(ex -> ex
                         .pathMatchers(String.valueOf(HttpMethod.OPTIONS), "/**").permitAll()
-                        .anyExchange().permitAll()
-                )
+                        .anyExchange().permitAll() //custon filter handeling auth
+                ) // permit all because i disabled all default filters
                 .build();
     }
 }

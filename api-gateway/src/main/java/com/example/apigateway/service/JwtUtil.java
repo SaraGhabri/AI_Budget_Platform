@@ -19,11 +19,13 @@ public class JwtUtil {
     @Value("${jwt.secret}")
     private String secret;
 
+    //validates token signature and expiration
     public void validateToken(final String token) {
         Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token);
     }
 
 
+    //extract username from token "subject" claim
     public String extractUsername(String token) {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(getSignKey())
@@ -33,11 +35,13 @@ public class JwtUtil {
         return claims.getSubject();  // Le username est dans le "subject"
     }
 
+
     private Key getSignKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secret);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
+    //xtract roles from custom "roles" claim
     public List<String> extractRoles(String token) {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(getSignKey())
@@ -45,7 +49,7 @@ public class JwtUtil {
                 .parseClaimsJws(token)
                 .getBody();
 
-        Object rolesObj = claims.get("roles");
+        Object rolesObj = claims.get("roles"); //custom claim
         System.out.println("DEBUG - Roles in token: " + rolesObj);
 
         if (rolesObj instanceof List<?> list) {

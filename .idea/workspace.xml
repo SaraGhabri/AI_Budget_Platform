@@ -4,7 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbf7c8df-f945-48d4-9f91-4eed8039cb93" name="Changes" comment="" />
+    <list default="true" id="dbf7c8df-f945-48d4-9f91-4eed8039cb93" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agent-ia-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/agent-ia-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agent-ia-service/src/main/java/com/example/agentiaservice/controller/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/agent-ia-service/src/main/java/com/example/agentiaservice/controller/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agent-ia-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/agent-ia-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/example/apigateway/config/GatewayConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/example/apigateway/config/GatewayConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/example/apigateway/service/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/example/apigateway/service/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/example/apigateway/service/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/example/apigateway/service/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/example/apigateway/service/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/example/apigateway/service/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/example/authservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/example/authservice/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/example/authservice/security/BeanConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/example/authservice/security/BeanConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/example/authservice/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/example/authservice/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/example/authservice/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/example/authservice/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/example/authservice/services/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/example/authservice/services/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-service/src/main/java/com/example/budgetservice/controller/BudgetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-service/src/main/java/com/example/budgetservice/controller/BudgetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-service/src/main/java/com/example/budgetservice/repository/BudgetRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-service/src/main/java/com/example/budgetservice/repository/BudgetRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-service/src/main/java/com/example/budgetservice/service/BudgetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-service/src/main/java/com/example/budgetservice/service/BudgetService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget-service/src/main/java/com/example/budgetservice/tools/BudgetTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/budget-service/src/main/java/com/example/budgetservice/tools/BudgetTools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expense-service/src/main/java/com/example/expenseservice/controller/ExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/expense-service/src/main/java/com/example/expenseservice/controller/ExpenseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expense-service/src/main/java/com/example/expenseservice/entity/Expense.java" beforeDir="false" afterPath="$PROJECT_DIR$/expense-service/src/main/java/com/example/expenseservice/entity/Expense.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expense-service/src/main/java/com/example/expenseservice/repository/ExpenseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/expense-service/src/main/java/com/example/expenseservice/repository/ExpenseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expense-service/src/main/java/com/example/expenseservice/service/ExpenseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/expense-service/src/main/java/com/example/expenseservice/service/ExpenseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expense-service/src/main/java/com/example/expenseservice/tools/ExpenseTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/expense-service/src/main/java/com/example/expenseservice/tools/ExpenseTools.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +43,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -40,6 +68,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Spring Boot.AgentIaServiceApplication.executor": "Run",
     "Spring Boot.ApiGatewayApplication.executor": "Run",
@@ -47,14 +76,24 @@
     "Spring Boot.BudgetServiceApplication.executor": "Run",
     "Spring Boot.DiscoveryServiceApplication.executor": "Run",
     "Spring Boot.ExpenseServiceApplication.executor": "Run",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/sarah/IdeaProjects/Car-Rental-Platform",
+    "last_opened_file_path": "/home/sarah/IdeaProjects/mini-projet-ai-platform/budget-platform",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "/home/sarah/IdeaProjects/mini-projet-ai-platform/budget-platform/src/main/java/com/example/Main.java",
     "run.configurations.included.in.services": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/discovery-service/src/main/resources" />
+      <recent name="$PROJECT_DIR$/budget-service/src/main/resources" />
+      <recent name="$PROJECT_DIR$/auth-service/src/main/resources" />
+      <recent name="$PROJECT_DIR$/api-gateway/src/main/resources" />
+      <recent name="$PROJECT_DIR$/agent-ia-service/src/main/resources" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -143,6 +182,9 @@
       <workItem from="1767468206198" duration="15928000" />
       <workItem from="1767566262692" duration="9757000" />
       <workItem from="1767602386680" duration="21681000" />
+      <workItem from="1767638423565" duration="2632000" />
+      <workItem from="1767687132336" duration="165000" />
+      <workItem from="1767735237599" duration="9618000" />
     </task>
     <servers />
   </component>

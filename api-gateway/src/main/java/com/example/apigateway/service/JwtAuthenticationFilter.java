@@ -26,12 +26,12 @@ public class JwtAuthenticationFilter implements GatewayFilter {
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getURI().getPath();
 
-        // ✅ Public endpoints (ajoutés)
+        // Public endpoints (ajoutés)
         if (isPublicRoute(path)) {
             return chain.filter(exchange);
         }
 
-        // ✅ Check header
+        // Check header
         String authHeader = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             return unauthorized(exchange);
@@ -39,19 +39,19 @@ public class JwtAuthenticationFilter implements GatewayFilter {
 
         String token = authHeader.substring(7);
 
-        // ✅ Validate token
+        // Validate token
         try {
             jwtUtil.validateToken(token);
         } catch (Exception e) {
             return unauthorized(exchange);
         }
 
-        // ✅ Extract roles from token
+        //  Extract roles from token
         List<String> roles = jwtUtil.extractRoles(token);
         boolean isAdmin = roles.contains("ROLE_ADMIN");
         boolean isUser  = roles.contains("ROLE_USER");
 
-        // ✅ Check permissions
+        //  Check permissions
         if (path.startsWith("/ask")) {
             if (isUser || isAdmin) {
                 return chain.filter(exchange);
@@ -73,27 +73,27 @@ public class JwtAuthenticationFilter implements GatewayFilter {
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getURI().getPath();
 
-        // ✅ Public endpoints
+        // Public endpoints = skip authentification
         if (isPublicRoute(path)) {
             return chain.filter(exchange);
         }
 
-        // ✅ Check header
+        // extraction du jwt de auth header
         String authHeader = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             return unauthorized(exchange);
         }
 
-        String token = authHeader.substring(7);
+        String token = authHeader.substring(7); //to remove bearer
 
-        // ✅ Validate token
+        // valider token
         try {
             jwtUtil.validateToken(token);
         } catch (Exception e) {
             return unauthorized(exchange);
         }
 
-        // ✅ Extract roles from token
+        // Extract roles from JWT claims
         List<String> roles = jwtUtil.extractRoles(token);
 
         // Check for both formats: with and without ROLE_ prefix
@@ -106,7 +106,7 @@ public class JwtAuthenticationFilter implements GatewayFilter {
         System.out.println("DEBUG - Roles: " + roles);
         System.out.println("DEBUG - isAdmin: " + isAdmin + ", isUser: " + isUser);
 
-        // ✅ For /api/budgets and /api/expenses, allow both ADMIN and USER
+        // Authorization logic for /api/budgets and /api/expenses = pour admin et user
         if (path.startsWith("/api/budgets") || path.startsWith("/api/expenses")) {
             if (isAdmin || isUser) {
                 // ✅ Extract username and add headers
@@ -121,7 +121,7 @@ public class JwtAuthenticationFilter implements GatewayFilter {
             return forbidden(exchange);
         }
 
-        // ✅ For ask endpoint
+        // Authorization for /ask (AI chat)
         if (path.startsWith("/ask")) {
             if (isUser || isAdmin) {
                 return chain.filter(exchange);
@@ -131,6 +131,7 @@ public class JwtAuthenticationFilter implements GatewayFilter {
 
         return chain.filter(exchange);
     }
+    //Define public routes (no authentication needed)
     private boolean isPublicRoute(String path) {
         return path.equals("/api/login") ||
                 path.startsWith("/api/auth/") ||  // AJOUTÉ
